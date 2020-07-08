@@ -10,6 +10,7 @@ using BLL.Interfaces;
 using BLL.Models.UserModels;
 using DAL.Models;
 using DAL.Repositories;
+using Microsoft.AspNet.Identity.EntityFramework;
 //using Fnews.Models;
 //using Fnews.Models;
 using Microsoft.AspNetCore.Http;
@@ -93,6 +94,8 @@ namespace Fnews.Controllers
                 new Claim(ClaimTypes.Email, userFromData.Email.ToString()),
                 new Claim(ClaimTypes.Role, userFromData.IsAdmin.ToString()),
             };
+
+            //var userStore = new UserStore<User>(_context);
 
             var key = new SymmetricSecurityKey(
                 Encoding.UTF8.GetBytes(_config.GetSection("AppSettings:Token").Value)
