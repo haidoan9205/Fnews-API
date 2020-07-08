@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using BLL.Interfaces;
 using BLL.Models.NewsModels;
 using DAL.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -30,7 +32,7 @@ namespace Fnews.Controllers
             }
             return Ok(news);
         }
-
+        [Authorize(Roles = "True")]
         [HttpGet]
         public IActionResult GetAllNews()
         {
@@ -46,7 +48,7 @@ namespace Fnews.Controllers
             return Ok(news);
         }
 
-
+        [Authorize(Roles = ClaimTypes.Role)]
         [HttpPost]
         public IActionResult CreateNews(NewsViewModel newsCreate)
         {
@@ -62,6 +64,7 @@ namespace Fnews.Controllers
             return Ok("Success");
         }
 
+        [Authorize(Roles = "True")]
         [HttpPut]
         public IActionResult UpdateNews([FromBody] News news)
         {
@@ -79,6 +82,7 @@ namespace Fnews.Controllers
             return Ok("Update Successfully");
         }
 
+        [Authorize(Policy = "RequireAdminRole")]
         [HttpDelete("{id}")]
         public IActionResult DeleteNews(int id)
         {

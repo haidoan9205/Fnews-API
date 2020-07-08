@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Net;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +14,7 @@ using DAL.Repositories;
 //using Fnews.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 
@@ -22,53 +24,74 @@ namespace Fnews.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
+        private readonly FnewsContext _context;
         private readonly IAuthRepository _repo;
         private readonly IUserLogic _userLogic;
         private readonly IConfiguration _config;
 
-        public UsersController(IUserLogic userLogic)
+        public UsersController(IUserLogic userLogic, IAuthRepository authRepo, IConfiguration config, FnewsContext context)
         {
             _userLogic = userLogic;
+            _context = context;
+            _repo = authRepo;
+            _config = config;
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetUser(int id)
+        public async Task<ActionResult<User>> GetUser(int id)
         {
-            User user = _userLogic.GetUserById(id);
-            if (user != null)
+            var user = await _context.User.FindAsync(id);
+
+            if (user == null)
             {
-                return NotFound("This user is not exist");
+                return NotFound();
             }
-            return Ok(user);
+
+            return user;
         }
 
-        [HttpPut]
-        public IActionResult UpdateUser([FromBody] UserUpdateModel userUpdate)
+        [HttpPut("{id}")]
+        public IActionResult UpdateUser(int id, [FromBody] UserUpdateModel user)
         {
-            User user = _userLogic.GetUserById(userUpdate.UserId);
-            if(user != null)
+            if (id != user.UserId)
             {
-                return NoContent();
+                return BadRequest();
             }
-            user.Email = userUpdate.Email;
-            user.UserTag = userUpdate.UserTag;
-            _userLogic.UpdateUser(user);
-            return Ok("User updated");
+
+            _context.Entry(user).State = EntityState.Modified;
+
+            try
+            {
+                 _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!UserExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return NoContent();
         }
 
-        [HttpPost("login")]
-        public async Task<IActionResult> Login(UserForLoginModel user)
+       [HttpPost("login")]
+        public async Task<IActionResult> Login([FromBody] UserForLoginModel user)
         {
-            var userFromData = await _repo.Login(user.Email.ToLower(), user.Password);
-
+            var userFromData =await _repo.Login(user.Email.ToLower(), user.Password);
+  
             if (userFromData == null)
                 return Unauthorized();
 
             var claims = new[]
             {
                 new Claim(ClaimTypes.NameIdentifier, userFromData.UserId.ToString()),
-                new Claim(ClaimTypes.Email, userFromData.Email),
-               // new Claim(ClaimTypes.Role, (string)userFromData.IsAdmin)
+                new Claim(ClaimTypes.Email, userFromData.Email.ToString()),
+                new Claim(ClaimTypes.Role, userFromData.IsAdmin.ToString()),
             };
 
             var key = new SymmetricSecurityKey(
@@ -95,7 +118,12 @@ namespace Fnews.Controllers
                 token = tokenHandler.WriteToken(token)
             });
         }
+        private bool UserExists(int id)
+        {
+            return _context.User.Any(e => e.UserId == id);
+        }
 
+        
 
 
 

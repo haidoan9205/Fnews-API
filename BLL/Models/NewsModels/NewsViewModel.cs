@@ -11,6 +11,6 @@ namespace BLL.Models.NewsModels
         public string NewsContent { get; set; }
         public DateTime DayOfPost { get; set; }
         public int ChannelId { get; set; }
-        public string LinkPicture { get; set; }
+        public string LinkImage { get; set; }
     }
 }

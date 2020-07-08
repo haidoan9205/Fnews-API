@@ -1,7 +1,10 @@
 ﻿using DAL.Models;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -10,6 +13,8 @@ namespace DAL.Repositories
     public class AuthRepository : IAuthRepository
     {
         private readonly FnewsContext _context;
+
+        
         public  AuthRepository(FnewsContext context)
         {
             _context = context;
@@ -27,5 +32,15 @@ namespace DAL.Repositories
 
             return null;
         }
+
+  
+       
+       
+
+
+
+
+
+        //}
     }
 }

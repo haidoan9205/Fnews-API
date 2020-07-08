@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using BLL.Interfaces;
 using BLL.Models.ChannelsModel;
 using DAL.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -60,6 +61,7 @@ namespace Fnews.Controllers
             return Ok("Success");
         }
 
+        [Authorize(Policy = "RequireAdminRole")]
         [HttpPut]
         public IActionResult UpdateChannel([FromBody] Channel channel)
         {
@@ -76,6 +78,7 @@ namespace Fnews.Controllers
             return Ok("Update Successfully");
         }
 
+        [Authorize(Policy = "RequireAdminRole")]
         [HttpDelete("{id}")]
         public IActionResult DeleteChannel(int id)
         {

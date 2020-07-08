@@ -1,11 +1,14 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using BLL.BusinessLogics;
 using BLL.Interfaces;
 using DAL.Models;
+using DAL.Repositories;
 using DAL.UnitOfWorks;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -15,6 +18,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 
 namespace Fnews
@@ -34,15 +38,36 @@ namespace Fnews
             services.AddControllers();
 
             //services.AddCors();
-            services.AddDbContext<FnewsContext>(o => o.UseSqlServer("Server=tcp:fnews.database.windows.net,1433;Initial Catalog=fnewssql;Persist Security Info=False;User ID=sql;Password=123@admin;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"));
+            services.AddDbContext<FnewsContext>(o => o.UseSqlServer("Server=HaiDQ;Database=Fnews;Trusted_Connection=True;"));
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IBookMarkLogic, BookMarkLogic>();
             services.AddScoped<IChannelLogic, ChannelLogic>();
             services.AddScoped<INewsLogic, NewsLogic>();
             services.AddScoped<INewTagLogic, NewTagLogic>();
             services.AddScoped<IUserLogic, UserLogic>();
+            services.AddScoped<IAuthRepository, AuthRepository>();
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options =>
+                {
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuerSigningKey = true,
+                        IssuerSigningKey = new SymmetricSecurityKey(
+                            Encoding.ASCII.GetBytes(Configuration.GetSection("AppSettings:Token").Value)),
+                        ValidateIssuer = false,
+                        ValidateAudience = false
+                    };
+                });
+            services.AddAuthorization(options =>
+            
+            {
+                options.AddPolicy("RequireAdminRole", policy => policy.RequireRole("Admin"));
+//                options.AddPolicy("RequireAdminRole", policy => policy.RequireRole("Admin"));
+            }
+            );
+        
 
-            services.AddSwaggerGen(c =>
+        services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });
             });

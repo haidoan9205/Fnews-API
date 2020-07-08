@@ -24,18 +24,28 @@ namespace BLL.BusinessLogics
             bool check = false;
             if(newsModel != null)
             {
-                News news = new News()
+                try
                 {
-                    NewsId = newsModel.NewsId,
-                    NewsTitle = newsModel.NewsTitle,
-                    NewsContent = newsModel.NewsContent,
-                    DayOfPost = newsModel.DayOfPost,
-                    ChannelId = newsModel.ChannelId,
-                    LinkImage = newsModel.LinkPicture
-                };
-                _unitOfWork.GetRepository<News>().Insert(news);
-                _unitOfWork.Commit();
-                check = true;
+                    News news = new News()
+                    {
+                       
+                        NewsTitle = newsModel.NewsTitle,
+                        NewsContent = newsModel.NewsContent,
+                        DayOfPost = newsModel.DayOfPost,
+                        ChannelId = newsModel.ChannelId,
+                        LinkImage = newsModel.LinkImage,
+                        IsActive =  true,
+                    };
+                    _unitOfWork.GetRepository<News>().Insert(news);
+                    _unitOfWork.Commit();
+                    check = true;
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                   
+                }
+               
 
             }
             return check;
