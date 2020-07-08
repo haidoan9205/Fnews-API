@@ -32,7 +32,8 @@ namespace Fnews.Controllers
             }
             return Ok(news);
         }
-     //   [Authorize(Roles = "True")]
+
+        [Authorize]
         [HttpGet]
         public IActionResult GetAllNews()
         {
@@ -48,7 +49,7 @@ namespace Fnews.Controllers
             return Ok(news);
         }
 
-       // [Authorize(Roles = ClaimTypes.Role)]
+        [Authorize]
         [HttpPost]
         public IActionResult CreateNews(NewsViewModel newsCreate)
         {
@@ -64,7 +65,7 @@ namespace Fnews.Controllers
             return Ok("Success");
         }
 
-//        [Authorize(Roles = "True")]
+        [Authorize(Roles = "True")]
         [HttpPut]
         public IActionResult UpdateNews([FromBody] News news)
         {
