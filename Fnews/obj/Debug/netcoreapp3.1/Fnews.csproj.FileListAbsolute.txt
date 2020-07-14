@@ -163,6 +163,15 @@ D:\Fnews\Fnews\bin\Debug\netcoreapp3.1\ru\Microsoft.CodeAnalysis.Workspaces.reso
 D:\Fnews\Fnews\bin\Debug\netcoreapp3.1\tr\Microsoft.CodeAnalysis.Workspaces.resources.dll
 D:\Fnews\Fnews\bin\Debug\netcoreapp3.1\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
 D:\Fnews\Fnews\bin\Debug\netcoreapp3.1\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Fnews\Fnews\bin\Debug\netcoreapp3.1\CacheManager.Core.dll
+D:\Fnews\Fnews\bin\Debug\netcoreapp3.1\CacheManager.StackExchange.Redis.dll
+D:\Fnews\Fnews\bin\Debug\netcoreapp3.1\Pipelines.Sockets.Unofficial.dll
+D:\Fnews\Fnews\bin\Debug\netcoreapp3.1\StackExchange.Redis.dll
+D:\Fnews\Fnews\bin\Debug\netcoreapp3.1\System.Diagnostics.PerformanceCounter.dll
+D:\Fnews\Fnews\bin\Debug\netcoreapp3.1\System.IO.Pipelines.dll
+D:\Fnews\Fnews\bin\Debug\netcoreapp3.1\System.Runtime.CompilerServices.Unsafe.dll
+D:\Fnews\Fnews\bin\Debug\netcoreapp3.1\System.Threading.Channels.dll
+D:\Fnews\Fnews\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Diagnostics.PerformanceCounter.dll
 D:\Fnews\Fnews\obj\Debug\netcoreapp3.1\Fnews.csproj.CoreCompileInputs.cache
 D:\Fnews\Fnews\obj\Debug\netcoreapp3.1\Fnews.MvcApplicationPartsAssemblyInfo.cs
 D:\Fnews\Fnews\obj\Debug\netcoreapp3.1\Fnews.MvcApplicationPartsAssemblyInfo.cache

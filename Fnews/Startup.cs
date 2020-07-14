@@ -38,7 +38,7 @@ namespace Fnews
             services.AddControllers();
 
             //services.AddCors();
-            services.AddDbContext<FnewsContext>(o => o.UseSqlServer("Server=tcp:fnews.database.windows.net,1433;Initial Catalog=fnewssql;Persist Security Info=False;User ID=sql;Password=123@admin;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"));
+            services.AddDbContext<FnewsContext>(o => o.UseSqlServer("Server=tcp:fnewsdb.database.windows.net,1433;Initial Catalog=fnewsdb;Persist Security Info=False;User ID=sql;Password=123@admin;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"));
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IBookMarkLogic, BookMarkLogic>();
             services.AddScoped<IChannelLogic, ChannelLogic>();

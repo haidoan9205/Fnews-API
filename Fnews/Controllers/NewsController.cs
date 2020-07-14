@@ -33,7 +33,7 @@ namespace Fnews.Controllers
             return Ok(news);
         }
 
-       // [Authorize]
+        [Authorize]
         [HttpGet]
         public IActionResult GetAllNews()
         {

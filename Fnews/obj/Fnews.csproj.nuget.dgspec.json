@@ -133,6 +133,10 @@
             "Microsoft.Extensions.Configuration": {
               "target": "Package",
               "version": "[3.1.5, )"
+            },
+            "StackExchange.Redis": {
+              "target": "Package",
+              "version": "[2.1.58, )"
             }
           },
           "imports": [
@@ -195,6 +199,10 @@
       "frameworks": {
         "netcoreapp3.1": {
           "dependencies": {
+            "CacheManager.StackExchange.Redis": {
+              "target": "Package",
+              "version": "[1.2.0, )"
+            },
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
               "version": "[3.1.5, )"
