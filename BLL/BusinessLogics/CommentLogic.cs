@@ -16,18 +16,24 @@ namespace BLL.BusinessLogics
         {
             _unitOfWork = unitOfWork;
         }
-    /*    public bool CreateNewComment(CommentModel comment)
-        {
-            bool check = false; 
-            if(comment != null)
-            {
-                Comment commentModel = new Comment()
-                {
-                    
-                }
 
-            }
-        }*/
+        public bool CreateNewComment(CommentModel comment)
+        {
+            throw new NotImplementedException();
+        }
+
+        /*    public bool CreateNewComment(CommentModel comment)
+   {
+       bool check = false; 
+       if(comment != null)
+       {
+           Comment commentModel = new Comment()
+           {
+
+           }
+
+       }
+   }*/
 
         public bool DeleteComment(int id)
         {
