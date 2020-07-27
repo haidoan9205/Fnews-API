@@ -172,6 +172,9 @@ D:\Fnews\Fnews\bin\Debug\netcoreapp3.1\System.IO.Pipelines.dll
 D:\Fnews\Fnews\bin\Debug\netcoreapp3.1\System.Runtime.CompilerServices.Unsafe.dll
 D:\Fnews\Fnews\bin\Debug\netcoreapp3.1\System.Threading.Channels.dll
 D:\Fnews\Fnews\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Diagnostics.PerformanceCounter.dll
+D:\Fnews\Fnews\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.JsonPatch.dll
+D:\Fnews\Fnews\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+D:\Fnews\Fnews\bin\Debug\netcoreapp3.1\Newtonsoft.Json.Bson.dll
 D:\Fnews\Fnews\obj\Debug\netcoreapp3.1\Fnews.csproj.CoreCompileInputs.cache
 D:\Fnews\Fnews\obj\Debug\netcoreapp3.1\Fnews.MvcApplicationPartsAssemblyInfo.cs
 D:\Fnews\Fnews\obj\Debug\netcoreapp3.1\Fnews.MvcApplicationPartsAssemblyInfo.cache

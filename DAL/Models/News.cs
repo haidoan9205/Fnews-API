@@ -24,5 +24,7 @@ namespace DAL.Models
         public virtual ICollection<Bookmark> Bookmark { get; set; }
         public virtual ICollection<Comment> Comment { get; set; }
         public virtual ICollection<NewsTag> NewsTag { get; set; }
+
+       
     }
 }

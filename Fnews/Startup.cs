@@ -36,7 +36,9 @@ namespace Fnews
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-
+            services.AddControllers().AddNewtonsoftJson(options =>
+            options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+);
             //services.AddCors();
             services.AddDbContext<FnewsContext>(o => o.UseSqlServer("Server=tcp:fnewsdb.database.windows.net,1433;Initial Catalog=fnewsdb;Persist Security Info=False;User ID=sql;Password=123@admin;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"));
             services.AddScoped<IUnitOfWork, UnitOfWork>();
@@ -61,7 +63,7 @@ namespace Fnews
             services.AddAuthorization(options =>
             
             {
-                options.AddPolicy("RequireAdminRole", policy => policy.RequireRole("Admin"));
+                options.AddPolicy("RequireAdminRole", policy => policy.RequireRole("false"));
 //                options.AddPolicy("RequireAdminRole", policy => policy.RequireRole("Admin"));
             }
             );

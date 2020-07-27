@@ -8,6 +8,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.EntityFrameworkCore;
+using System.Security.Cryptography.X509Certificates;
 
 namespace BLL.BusinessLogics
 {
@@ -67,7 +69,10 @@ namespace BLL.BusinessLogics
 
         public IQueryable<News> GetAllNews()
         {
-            IQueryable<News> news = _unitOfWork.GetRepository<News>().GetAll();
+            IQueryable<News> news = _unitOfWork.GetRepository<News>().GetAll().Where(n => n.IsActive == true)
+                                                    .Include(x => x.NewsTag).ThenInclude(y => y.Tag)
+                                                    .Include(x => x.Channel);
+                                
             return news;
         }
         

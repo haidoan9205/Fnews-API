@@ -46,6 +46,8 @@ namespace Fnews.Controllers
             }
             return Ok(channels);
         }
+
+        [Authorize]
         [HttpPost]
         public IActionResult CreateChannel(ChannelCreateModel channelCreate)
         {
@@ -61,6 +63,7 @@ namespace Fnews.Controllers
             return Ok("Success");
         }
 
+        
         [Authorize(Policy = "RequireAdminRole")]
         [HttpPut]
         public IActionResult UpdateChannel([FromBody] Channel channel)

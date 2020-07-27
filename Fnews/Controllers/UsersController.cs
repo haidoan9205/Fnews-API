@@ -95,6 +95,7 @@ namespace Fnews.Controllers
                 new Claim(ClaimTypes.Role, userFromData.IsAdmin.ToString()),
             };
 
+          
             //var userStore = new UserStore<User>(_context);
 
             var key = new SymmetricSecurityKey(
