@@ -15,11 +15,13 @@ namespace BLL.BusinessLogics
 {
     public class NewsLogic : INewsLogic
     {
+        private readonly FnewsContext _context;
 
         private readonly IUnitOfWork _unitOfWork;
-        public NewsLogic(IUnitOfWork unitOfWork)
+        public NewsLogic(IUnitOfWork unitOfWork, FnewsContext context)
         {
             _unitOfWork = unitOfWork;
+            _context = context;
         }
         public bool CreateNews(NewsViewModel newsModel)
         {
