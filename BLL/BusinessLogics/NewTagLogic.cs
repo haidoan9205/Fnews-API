@@ -54,10 +54,12 @@ namespace BLL.BusinessLogics
             return newsTag;
         }
 
-        public IQueryable<NewsTag> GetNewsTags()
+        public IQueryable<NewsTag> GetNewsTag()
         {
             var news = _unitOfWork.GetRepository<NewsTag>().GetAll();
             return news;
         }
+
+       
     }
 }
