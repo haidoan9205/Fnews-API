@@ -37,7 +37,7 @@ namespace Fnews.Controllers
         [HttpGet]
         public IActionResult GetAllNews()
         {
-            Console.WriteLine(ClaimTypes.Role);
+            //Console.WriteLine(ClaimTypes.Role);
             List<News> news = _newsLogic.GetAllNews().ToList();
             if (news == null)
             {

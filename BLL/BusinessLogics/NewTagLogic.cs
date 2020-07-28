@@ -5,6 +5,7 @@ using DAL.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
 
 namespace BLL.BusinessLogics
 {
@@ -45,6 +46,18 @@ namespace BLL.BusinessLogics
                 check = true;
             }
             return check;
+        }
+
+        public NewsTag GetModelsById(int id)
+        {
+            NewsTag newsTag = _unitOfWork.GetRepository<NewsTag>().FindById(id);
+            return newsTag;
+        }
+
+        public IQueryable<NewsTag> GetNewsTags()
+        {
+            var news = _unitOfWork.GetRepository<NewsTag>().GetAll();
+            return news;
         }
     }
 }

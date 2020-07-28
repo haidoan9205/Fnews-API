@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using BLL.Interfaces;
 using BLL.Models.NewsTagModel;
+using DAL.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -43,6 +44,32 @@ namespace Fnews.Controllers
                 return BadRequest("Error: Remove fail");
             }
             return Ok("Delete Successfully");
+        }
+
+        [HttpGet]
+        public IActionResult GetNewsTag()
+        {
+            List<NewsTag> newsTag = _newsTagLogic.GetNewsTag().ToList();
+            if (newsTag == null)
+            {
+                return BadRequest("Error");
+            }
+            if (newsTag.Count == 0)
+            {
+                return NotFound();
+            }
+            return Ok(newsTag);
+        }
+
+        [HttpGet("{id}")]
+        public IActionResult GetNewsTagById(int id)
+        {
+            NewsTag newsTag = _newsTagLogic.GetModelsById(id);
+            if (newsTag == null)
+            {
+                return NotFound("News tag is not found");
+            }
+            return Ok(newsTag);
         }
 
     }
