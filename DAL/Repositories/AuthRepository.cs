@@ -32,10 +32,21 @@ namespace DAL.Repositories
 
             return null;
         }
+        public async Task<bool> UserExists(string email)
+        {
+            if (await _context.User.AnyAsync(x => x.Email == email))
+                return true;
 
-  
+            return false;
+        }
+
        
-       
+
+
+
+
+
+
 
 
 

@@ -9,5 +9,7 @@ namespace DAL.Repositories
     public interface IAuthRepository
     {
         Task<User> Login(string email, string password);
+
+       
     }
 }

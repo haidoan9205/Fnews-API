@@ -16,6 +16,12 @@ namespace BLL.BusinessLogics
             _unitOfWork = unitOfWork;
         }
 
+        public IQueryable<User> GetAllUsers()
+        {
+            IQueryable<User> user = _unitOfWork.GetRepository<User>().GetAll();
+            return user;
+        }
+
         public User GetUserById(int id)
         {
             User user = _unitOfWork.GetRepository<User>().FindById(id);

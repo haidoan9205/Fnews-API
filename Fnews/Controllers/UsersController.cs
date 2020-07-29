@@ -122,12 +122,31 @@ namespace Fnews.Controllers
                 token = tokenHandler.WriteToken(token)
             });
         }
+
+
+        [HttpGet]
+        public IActionResult GetAllUsers()
+        {
+            //Console.WriteLine(ClaimTypes.Role);
+            List<User> users = _userLogic.GetAllUsers().ToList();
+            if (users == null)
+            {
+                return BadRequest("Error");
+            }
+            if (users.Count == 0)
+            {
+                return NotFound();
+            }
+            return Ok(users);
+        }
+
+
         private bool UserExists(int id)
         {
             return _context.User.Any(e => e.UserId == id);
         }
 
-        
+
 
 
 

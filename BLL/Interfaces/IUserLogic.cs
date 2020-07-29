@@ -1,6 +1,6 @@
 ﻿using BLL.Models.UserModels;
 using DAL.Models;
-
+using System.Linq;
 
 namespace BLL.Interfaces
 {
@@ -9,6 +9,8 @@ namespace BLL.Interfaces
 
         public User GetUserById(int id);
         public bool UpdateUser(User user);
+
+        public IQueryable<User> GetAllUsers();
 
 
     }
