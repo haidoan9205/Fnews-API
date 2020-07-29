@@ -73,7 +73,7 @@ namespace BLL.BusinessLogics
         {
             IQueryable<News> news = _unitOfWork.GetRepository<News>().GetAll().Where(n => n.IsActive == true)
                                                     .Include(x => x.NewsTag).ThenInclude(y => y.Tag)
-                                                    .Include(x => x.Channel);
+                                                    .Include(x => x.Channel).OrderByDescending(n => n.DayOfPost);
                                 
             return news;
         }
