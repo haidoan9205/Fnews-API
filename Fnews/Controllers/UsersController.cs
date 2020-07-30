@@ -140,6 +140,21 @@ namespace Fnews.Controllers
             return Ok(users);
         }
 
+        [HttpPost]
+        public IActionResult CreateUser(User user)
+        {
+            if (user == null)
+            {
+                return BadRequest("null");
+            }
+            bool check = _userLogic.CreateUser(user);
+            if (!check)
+            {
+                return BadRequest("Cannot create a new user");
+            }
+            return Ok(user);
+        }
+
 
         private bool UserExists(int id)
         {

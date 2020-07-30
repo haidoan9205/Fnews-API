@@ -16,6 +16,38 @@ namespace BLL.BusinessLogics
             _unitOfWork = unitOfWork;
         }
 
+        public bool CreateUser(User userModel)
+        {
+            bool check = false;
+            if (userModel != null)
+            {
+                try
+                {
+                    User user = new User()
+                    {
+
+                        Email = userModel.Email,
+                        IsAdmin = userModel.IsAdmin,
+                        GroupId = userModel.GroupId,
+                        Password = userModel.Password,
+                        Group = userModel.Group,
+                        IsActive = true,
+                    };
+                    _unitOfWork.GetRepository<User>().Insert(user);
+                    _unitOfWork.Commit();
+                    check = true;
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+
+                }
+
+
+            }
+            return check;
+        }
+
         public IQueryable<User> GetAllUsers()
         {
             IQueryable<User> user = _unitOfWork.GetRepository<User>().GetAll();
