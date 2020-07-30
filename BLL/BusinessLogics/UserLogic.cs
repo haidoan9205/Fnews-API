@@ -3,6 +3,7 @@ using DAL.Models;
 using DAL.UnitOfWorks;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 
@@ -50,7 +51,7 @@ namespace BLL.BusinessLogics
 
         public IQueryable<User> GetAllUsers()
         {
-            IQueryable<User> user = _unitOfWork.GetRepository<User>().GetAll();
+            IQueryable<User> user = _unitOfWork.GetRepository<User>().GetAll().Include(n => n.Bookmark);
             return user;
         }
 

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using BLL.Interfaces;
 using BLL.Models.BookMarkModels;
+using DAL.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -44,6 +45,22 @@ namespace Fnews.Controllers
                 return BadRequest("Error: Remove fail");
             }
             return Ok("Delete Successfully");
+        }
+
+        [HttpGet]
+        public IActionResult GetAllBookmarks()
+        {
+            //Console.WriteLine(ClaimTypes.Role);
+            List<Bookmark> bookmark = _bookmarkLogic.GetAllBookmarks().ToList();
+            if (bookmark == null)
+            {
+                return BadRequest("Error");
+            }
+            if (bookmark.Count == 0)
+            {
+                return NotFound();
+            }
+            return Ok(bookmark);
         }
 
     }

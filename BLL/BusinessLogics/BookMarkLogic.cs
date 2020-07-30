@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using DAL.Models;
+using System.Linq;
 
 namespace BLL.BusinessLogics
 {
@@ -45,6 +46,12 @@ namespace BLL.BusinessLogics
                 check = true;
             }
             return check;
+        }
+
+        public IQueryable<Bookmark> GetAllBookmarks()
+        {
+            IQueryable<Bookmark> bookmarks = _unitOfWork.GetRepository<Bookmark>().GetAll();
+            return bookmarks;
         }
     }
 }
