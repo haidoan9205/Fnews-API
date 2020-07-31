@@ -8,7 +8,7 @@ namespace DAL.Models
         public News()
         {
             Bookmark = new HashSet<Bookmark>();
-            Comment = new HashSet<Comment>();
+            Comment = new HashSet<UserComment>();
             NewsTag = new HashSet<NewsTag>();
         }
 
@@ -22,7 +22,7 @@ namespace DAL.Models
 
         public virtual Channel Channel { get; set; }
         public virtual ICollection<Bookmark> Bookmark { get; set; }
-        public virtual ICollection<Comment> Comment { get; set; }
+        public virtual ICollection<UserComment> Comment { get; set; }
         public virtual ICollection<NewsTag> NewsTag { get; set; }
 
        

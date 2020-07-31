@@ -8,7 +8,7 @@ namespace DAL.Models
         public User()
         {
             Bookmark = new HashSet<Bookmark>();
-            Comment = new HashSet<Comment>();
+            Comment = new HashSet<UserComment>();
             Subscribe = new HashSet<Subscribe>();
             UserTag = new HashSet<UserTag>();
         }
@@ -22,7 +22,7 @@ namespace DAL.Models
 
         public virtual Group Group { get; set; }
         public virtual ICollection<Bookmark> Bookmark { get; set; }
-        public virtual ICollection<Comment> Comment { get; set; }
+        public virtual ICollection<UserComment> Comment { get; set; }
         public virtual ICollection<Subscribe> Subscribe { get; set; }
         public virtual ICollection<UserTag> UserTag { get; set; }
     }

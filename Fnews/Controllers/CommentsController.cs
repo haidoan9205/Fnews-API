@@ -22,14 +22,14 @@ namespace Fnews.Controllers
 
         // GET: api/Comments
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Comment>>> GetComment()
+        public async Task<ActionResult<IEnumerable<UserComment>>> GetComment()
         {
             return await _context.Comment.ToListAsync();
         }
 
         // GET: api/Comments/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Comment>> GetComment(int id)
+        public async Task<ActionResult<UserComment>> GetComment(int id)
         {
             var comment = await _context.Comment.FindAsync(id);
 
@@ -45,7 +45,7 @@ namespace Fnews.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutComment(int id, Comment comment)
+        public async Task<IActionResult> PutComment(int id, UserComment comment)
         {
             if (id != comment.Id)
             {
@@ -77,7 +77,7 @@ namespace Fnews.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
-        public async Task<ActionResult<Comment>> PostComment(Comment comment)
+        public async Task<ActionResult<UserComment>> PostComment(UserComment comment)
         {
             _context.Comment.Add(comment);
             await _context.SaveChangesAsync();
@@ -87,7 +87,7 @@ namespace Fnews.Controllers
 
         // DELETE: api/Comments/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<Comment>> DeleteComment(int id)
+        public async Task<ActionResult<UserComment>> DeleteComment(int id)
         {
             var comment = await _context.Comment.FindAsync(id);
             if (comment == null)

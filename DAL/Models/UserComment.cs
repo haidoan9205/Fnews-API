@@ -3,12 +3,12 @@ using System.Collections.Generic;
 
 namespace DAL.Models
 {
-    public partial class Comment
+    public partial class UserComment
     {
         public int Id { get; set; }
         public int? NewsId { get; set; }
         public int? UserId { get; set; }
-        public string Comment1 { get; set; }
+        public string Comment { get; set; }
         public int? MasterCommentId { get; set; }
 
         public virtual News News { get; set; }

@@ -17,7 +17,7 @@ namespace DAL.Models
 
         public virtual DbSet<Bookmark> Bookmark { get; set; }
         public virtual DbSet<Channel> Channel { get; set; }
-        public virtual DbSet<Comment> Comment { get; set; }
+        public virtual DbSet<UserComment> Comment { get; set; }
         public virtual DbSet<Group> Group { get; set; }
         public virtual DbSet<News> News { get; set; }
         public virtual DbSet<NewsTag> NewsTag { get; set; }
@@ -76,11 +76,11 @@ namespace DAL.Models
                     .HasConstraintName("FK_Channel_Group");
             });
 
-            modelBuilder.Entity<Comment>(entity =>
+            modelBuilder.Entity<UserComment>(entity =>
             {
                 entity.Property(e => e.Id).HasColumnName("ID");
 
-                entity.Property(e => e.Comment1).HasColumnName("comment");
+                entity.Property(e => e.Comment).HasColumnName("comment");
 
                 entity.Property(e => e.MasterCommentId).HasColumnName("masterCommentID");
 
